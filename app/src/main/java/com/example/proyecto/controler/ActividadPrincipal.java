@@ -2,10 +2,12 @@ package com.example.proyecto.controler;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.Menu;
 
@@ -17,6 +19,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.proyecto.controler.ActividadFragmento;
 import com.example.proyecto.model.Anime;
 import com.example.proyecto.R;
 import com.example.proyecto.adapter.RecyclerAdapter;
@@ -43,6 +46,8 @@ public class ActividadPrincipal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_principal);
+        //Actualizamos los colores seleccionados como preferencia en el login
+        actualizarColores();
         //Tomamos la id del RecyclerView creado
         recyclerView = (RecyclerView) findViewById(R.id.RV_Anime);
         //Añadimos el manager del layout para darle formato
@@ -257,6 +262,38 @@ public class ActividadPrincipal extends AppCompatActivity {
     public void actualizarLista(){
         recAdapter.notifyDataSetChanged();
     }
+    public void cambioColor(int opcionColor){
+
+    }
+    //Metodo para actualizar el color de fondo de la actividad principal
+    public void actualizarColores(){
+        int color = ActividadFragmento.cargarPreferencias(this);
+        ConstraintLayout actividadPrincipal = (ConstraintLayout) findViewById(R.id.layoutprincipal);
+        switch (color){
+            case 0:
+                actividadPrincipal.setBackgroundColor(Color.RED);
+                break;
+            case 1:
+                actividadPrincipal.setBackgroundColor(Color.GREEN);
+                break;
+            case 2:
+                actividadPrincipal.setBackgroundColor(Color.rgb(154,242,253));
+                break;
+            case 3:
+                actividadPrincipal.setBackgroundColor(Color.MAGENTA);
+                break;
+            case 4:
+                actividadPrincipal.setBackgroundColor(Color.YELLOW);
+                break;
+        }
+    }
+    @Override
+    //Metodo onResume para actualizar el color de fondo con el de las preferencias
+    public void onResume(){
+        super.onResume();
+        //Actualizamos el color de las preferencias
+        actualizarColores();
+    }
     private class publishTask extends AsyncTask<String, Void, String> {
         //Metodo que se ejecuta en el hilo secundario
         @Override
@@ -321,4 +358,5 @@ public class ActividadPrincipal extends AppCompatActivity {
         }
 
     }
+
 }

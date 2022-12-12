@@ -2,9 +2,11 @@ package com.example.proyecto.controler;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MotionEvent;
@@ -12,10 +14,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.proyecto.controler.ActividadFragmento;
 import com.example.proyecto.DataBase.AccesoBD;
 import com.example.proyecto.R;
+
+import eltos.simpledialogfragment.SimpleDialog;
 
 public class ActividadLogIn extends AppCompatActivity {
     AccesoBD aBD;
@@ -32,8 +38,9 @@ public class ActividadLogIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Actualizamos el color de preferencias
+        actualizarColor();
         alertDialog= new AlertDialog.Builder(ActividadLogIn.this).create();
-
         mButtonLogin = (Button) findViewById(R.id.BT_Login);
         mButtonSignIn = (Button) findViewById(R.id.BT_Registro);
         mButtonVer = (Button) findViewById(R.id.BT_Ver);
@@ -47,6 +54,7 @@ public class ActividadLogIn extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(ActividadLogIn.this, ActividadFragmento.class);
                 startActivity(i);
+
 
             }
         });
@@ -138,5 +146,35 @@ public class ActividadLogIn extends AppCompatActivity {
                 return true;
             }
         });
+
+    }
+    @Override
+    //Metodo onResume que actualiza el color
+    public void onResume(){
+        super.onResume();
+        //Actualizamos el color de las preferencias
+        actualizarColor();
+    }
+    //Metodo para actualizar el color seleccionado en las preferencias
+    public void actualizarColor(){
+       int color = ActividadFragmento.cargarPreferencias(this);
+        ConstraintLayout actividadLogin = (ConstraintLayout) findViewById(R.id.layout_login);
+       switch (color){
+           case 0:
+               actividadLogin.setBackgroundColor(Color.RED);
+               break;
+           case 1:
+               actividadLogin.setBackgroundColor(Color.GREEN);
+               break;
+           case 2:
+               actividadLogin.setBackgroundColor(Color.rgb(154,242,253));
+               break;
+           case 3:
+               actividadLogin.setBackgroundColor(Color.MAGENTA);
+               break;
+           case 4:
+               actividadLogin.setBackgroundColor(Color.YELLOW);
+               break;
+       }
     }
 }
