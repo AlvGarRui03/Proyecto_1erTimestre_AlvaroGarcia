@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:name="com.example.AjustesFragmento">
+    <ListPreference
+        android:defaultValue="2"
+        android:dialogTitle="Elija color"
+        android:entries="@array/elegir_color"
+        android:entryValues="@array/pref_color"
+        android:key="@string/key_color"
+        android:summary="@string/elijaColor"
+        android:title="@string/elijaColor" />
+</PreferenceScreen>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Proyecto</string>
+    <string name="elijaColor">Elija el color para el fondo</string>
+    <string name="key_color">key_color</string>
+    <string-array name="elegir_color">
+        <item>Rojo</item>
+        <item>Verde</item>
+        <item>Azul</item>
+        <item>Rosa</item>
+        <item>Amarillo</item>
+    </string-array>
+    <string-array name="pref_color">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+</resources>
